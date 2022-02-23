@@ -14,6 +14,7 @@ From: ubuntu:20.04
 %files
   # Used to copy files into the container
   examcard2txt 		  /opt
+  README.txt        /opt
 
 %labels
   Maintainer r.dylan.lawless@vumc.org
@@ -31,7 +32,8 @@ From: ubuntu:20.04
     zip \
     bc \
     curl \
-    libxml-libxml-perl
+    libxml-libxml-perl \
+    imagemagick \
     software-properties-common
   
   apt-get -y clean
@@ -46,10 +48,8 @@ From: ubuntu:20.04
 
 %environment
 
-
-
 %runscript
   
   # We just call our entrypoint, passing along all the command line arguments 
   # that were given at the singularity run command line.
-  opt/examcard2txt/examcard2txt.pl "$@"
+  opt/examcard2txt/pipeline_main.sh "$@"
