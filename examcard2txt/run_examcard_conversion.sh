@@ -33,11 +33,14 @@ while [[ $# -gt 0 ]]; do
 done
 
 # copy examcard dicom to outdir
-cp "${examcard}" "${outdir}"/ExamCard
+mkdir "${outdir}"/ExamCard
+cp "${examcard}" "${outdir}"/ExamCard/$(basename "$examcard")
 
 # Execute perl command
-/opt/pipeline/xnatwrapper/ConvertExamCard.py \
+/opt/pipeline/examcard2txt/ConvertExamCard.py \
   -i "${examcard}" -o "${outdir}" -p "${project}"
+#/opt/pipeline/xnatwrapper/ConvertExamCard.py \
+#  -i "${examcard}" -o "${outdir}" -p "${project}"
 
-wkhtmltopdf "${out_dir}"/ExamCard/*.html \
-"${out_dir}"/"${xnat_project}"_"${xnat_subject}"_"${xnat_session}"_examcard.pdf
+wkhtmltopdf "${outdir}"/ExamCard/*.html \
+"${outdir}"/"${project}"_"${subject}"_"${session}"_examcard.pdf

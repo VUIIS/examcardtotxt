@@ -49,13 +49,13 @@ class ExamCardNodeFactory(FileNodeFactory):
     def generate_node(self, id_gen, attrib):
         logger = logging.getLogger('gstudy_task')
         node = None
-        if attrib.get('SeriesNumber') == 0:
-            node = {
-                'filename': None,
-                'ID': next(id_gen),
-                'typename': self.typename,
-                'attrib': attrib,
-            }
+ #       if attrib.get('SeriesNumber') == 0:
+        node = {
+            'filename': None,
+            'ID': next(id_gen),
+            'typename': self.typename,
+            'attrib': attrib,
+        }
         return node
     def post_process_retrieval(self, gsroot, task_info):
         """ Extract the examcard file from the DICOM file by fixing the zip

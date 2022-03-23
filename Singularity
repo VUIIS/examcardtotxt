@@ -10,15 +10,19 @@ From: ubuntu:20.04
   # clearer this way.
   mkdir -p "${SINGULARITY_ROOTFS}"/opt/pipeline
 
-%environment
-  export LANG=en_US.UTF-8
-  export LC_ALL=C.UTF-8 
-  export LANGUAGE=en_US.UTF-8
-
 %files
   # Used to copy files into the container
   examcard2txt 		  /opt/pipeline
   README.txt        /opt/pipeline
+  dcm4che-2.0.25    /opt/dcm4che-2.0.25
+
+
+%environment
+  export LANG=en_US.UTF-8
+  export LC_ALL=C.UTF-8 
+  export LANGUAGE=en_US.UTF-8
+  # Add dcm4che to path
+  PATH=/opt/dcm4che-2.0.25/bin:$PATH
 
 %labels
   Maintainer r.dylan.lawless@vumc.org
@@ -31,16 +35,21 @@ From: ubuntu:20.04
   apt-get update 
   DEBIAN_FRONTEND=noninteractive \
   apt-get install -y --no-install-recommends \
+    curl \
+    bzip2 \
     make \
     perl \
     cpanminus \
     gcc \
     build-essential \
+    openjdk-8-jdk \
+    ant \
     wget \
     unzip \
     zip \
+    python3 \
+    python3-pip \
     bc \
-    curl \
     libxml-libxml-perl \
     imagemagick \
     expat \
@@ -50,6 +59,12 @@ From: ubuntu:20.04
   
   apt-get -y clean
   rm -rf /var/lib/apt/lists/*
+
+  # Fix java certificate issues
+  apt-get update && \
+    apt-get install ca-certificates-java && \
+    apt-get clean && \
+    update-ca-certificates -f;
 
   # Create a few directories to use as bind points when we run the container
   mkdir /INPUTS
@@ -61,8 +76,12 @@ From: ubuntu:20.04
   # Set up Perl
   cpanm XML::Parser; rm -fr root/.cpanm
 
+  # Install pip packages
+  python3 -m pip --no-cache-dir install setuptools --upgrade
+  python3 -m pip --no-cache-dir install lxml
+
 %runscript
   
   # We just call our entrypoint, passing along all the command line arguments 
   # that were given at the singularity run command line.
-  /opt/pipeline/examcard2txt/pipeline_entrypoint.sh "$@"
+  /opt/pipeline/examcard2txt/run_examcard_conversion.sh "$@"

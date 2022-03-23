@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 '''
 Inputs:
@@ -32,8 +32,8 @@ def main(argv):
     outdir = ''
     project = ''
     try:
-            opts,args = getopt(argv, "hi:o:p:",["examcard=","outdir=","project="])
-    except:
+            opts,args = getopt.getopt(argv, "hi:o:p:",["examcard=","outdir=","project="])
+    except getopt.GetoptError:
         print('ConvertExamCard.py -i <examcard.dcm> -o <outdir> -p <project>')
         sys.exit(2)
     for opt, arg in opts:
@@ -43,7 +43,7 @@ def main(argv):
         elif opt in ("-i", "--examcard"):
             examcard_file = arg
         elif opt in ("-o", "--outdir"):
-            outdir = arg.split(',')
+            outdir = arg
         elif opt in ("-p", "--project"):
             project = arg
 
@@ -55,7 +55,7 @@ def main(argv):
     ec_obj = ExamCardNodeFactory(outdir,'ExamCard');
     examcard = os.path.basename(examcard_file)
 
-    params = {'calendar_date':date.today(),'study_name':xnat_project}
+    params = {'calendar_date':date.today(),'study_name':project}
     ec_obj.attrib = ec_obj.get_query(params)
 
     mytup = ('1')  # maybe replace this with session
@@ -114,7 +114,7 @@ def main(argv):
         decoded = base64.b64decode(blob_tag.text)
         blob_file.write(decoded)
 
-    out, err = subprocess.Popen(['perl', '/home/dylan/Documents/examcard2txt/examcard2txt/examcard2txt.pl',
+    out, err = subprocess.Popen(['perl', '/opt/pipeline/examcard2txt/examcard2txt.pl',
         '-nodata',new_filename],stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 
     #out, err = subprocess.Popen(['perl', '/opt/pipeline/examcard2txt/examcard2txt/examcard2txt.pl',
