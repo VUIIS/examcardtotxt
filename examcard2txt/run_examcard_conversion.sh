@@ -42,5 +42,6 @@ cp "${examcard}" "${outdir}"/ExamCard/$(basename "$examcard")
 #/opt/pipeline/xnatwrapper/ConvertExamCard.py \
 #  -i "${examcard}" -o "${outdir}" -p "${project}"
 
+mkdir "${outdir}"/PDF
 wkhtmltopdf "${outdir}"/ExamCard/*.html \
-"${outdir}"/"${project}"_"${subject}"_"${session}"_examcard.pdf
+"${outdir}"/PDF/"${project}"_"${subject}"_"${session}"_examcard.pdf

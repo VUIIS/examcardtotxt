@@ -1,5 +1,5 @@
-export examcard='/home/dylan/Documents/examcard/INPUTS/test.dcm'
-export outdir='/home/dylan/Documents/examcard/OUTPUTS/'
+export examcard='/home/dylan/Documents/examcard/INPUTS/1.3.46.670589.11.17240.5.0.10960.2016101010364405000-0-1-15p6sf2.dcm'
+export outdir='/home/dylan/Documents/examcard/OUTPUTS'
 export project='NO_PROJECT'
 export subject='NO_SUBJECT'
 export session='NO_SESSION'

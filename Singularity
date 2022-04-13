@@ -81,7 +81,7 @@ From: ubuntu:20.04
   python3 -m pip --no-cache-dir install lxml
 
 %runscript
-  
+
   # We just call our entrypoint, passing along all the command line arguments 
   # that were given at the singularity run command line.
   /opt/pipeline/examcard2txt/run_examcard_conversion.sh "$@"
