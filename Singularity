@@ -49,12 +49,16 @@ From: ubuntu:20.04
     zip \
     python3 \
     python3-pip \
+    python3-cffi \
+    python3-brotli \
+    libpango-1.0-0 \
+    libharfbuzz0b \
+    libpangoft2-1.0-0 \
     bc \
     libxml-libxml-perl \
     imagemagick \
     expat \
     libexpat1-dev \
-    wkhtmltopdf \
     software-properties-common
   
   apt-get -y clean
@@ -79,6 +83,7 @@ From: ubuntu:20.04
   # Install pip packages
   python3 -m pip --no-cache-dir install setuptools --upgrade
   python3 -m pip --no-cache-dir install lxml
+  python3 -m pip --no-cache-dir install weasyprint
 
 %runscript
 
