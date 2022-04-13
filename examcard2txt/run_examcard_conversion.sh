@@ -43,5 +43,5 @@ cp "${examcard}" "${outdir}"/ExamCard/$(basename "$examcard")
 #  -i "${examcard}" -o "${outdir}" -p "${project}"
 
 mkdir "${outdir}"/PDF
-wkhtmltopdf "${outdir}"/ExamCard/*.html \
+weasyprint -q "${outdir}"/ExamCard/*.html \
 "${outdir}"/PDF/"${project}"_"${subject}"_"${session}"_examcard.pdf
