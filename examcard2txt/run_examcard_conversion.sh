@@ -39,9 +39,11 @@ cp "${examcard}" "${outdir}"/ExamCard/$(basename "$examcard")
 # Execute perl command
 /opt/pipeline/examcard2txt/ConvertExamCard.py \
   -i "${examcard}" -o "${outdir}" -p "${project}"
-#/opt/pipeline/xnatwrapper/ConvertExamCard.py \
-#  -i "${examcard}" -o "${outdir}" -p "${project}"
+
+/opt/pipeline/examcard2txt/convert_to_csv.py \
+  -o "${outdir}"
 
 mkdir "${outdir}"/PDF
 weasyprint -q "${outdir}"/ExamCard/*.html \
 "${outdir}"/PDF/"${project}"_"${subject}"_"${session}"_examcard.pdf
+
