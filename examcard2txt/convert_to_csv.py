@@ -1,8 +1,9 @@
+#!/usr/bin/python3
 # Converts examc cards from txt to csv files
 
 import pandas
 import glob
-import os
+import os, sys, getopt
 
 def main(argv):
     outdir = ''
@@ -25,8 +26,11 @@ def main(argv):
     basename, _ = os.path.splitext(examcard_txt)
     examcard_csv = basename + '.csv'    
 
-    df = pandas.read_csv(examcard_txt,delimiter="\n")
+    df = pandas.read_csv(examcard_txt,delimiter="\t")
     df_split = df[df.columns.values[0]].str.split(':',n=1,expand=True)
     df_split.columns = [df.columns.values[0],"Value"]
     df_split["Value"].str.strip()
     df_split.to_csv(examcard_csv, encoding='utf-8', index=False)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
