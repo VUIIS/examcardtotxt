@@ -1,0 +1,66 @@
+Selected Parameters
+FOV
+FOV
+FOV
+ACQ voxel size
+ACQ voxel size
+Slice thickness
+EX_GEO_sag_slice_order
+EX_GEO_cor_slice_order
+EX_GEO_tra_slice_order
+Recon voxel size
+Recon voxel size
+Slice thickness
+Slice thickness
+RFOV
+Matrix scan
+reconstruction
+Scan percentage
+SENSE
+CS-SENSE
+Stacks
+Slices
+Slice thickness
+Slice orientation
+Fold-over direction
+Fat shift direction
+Slice Offc. AP
+RL
+FH
+Ang.  AP
+RL
+FH
+Slice scan order
+REST slabs
+Patient position
+Patient orientation
+Scan type
+Scan mode 
+technique
+Contrast enhancement
+Acquisition mode
+Echoes
+TE
+\(ms\)
+Flip angle
+TR
+Water-fat shift
+(pixels)
+Shim
+mDIXON
+Fat suppresion
+Water suppression
+TFE prepulse
+delay
+\(ms\)
+Motion smoothing
+NSA
+Total scan duration
+IF_absolute_SNR
+Rel. SNR 
+Act. TR/TE
+ACQ matrix M x P
+ACQ voxel MPS
+REC voxel MPS
+Min. TI delay
+Min. TR/TE
