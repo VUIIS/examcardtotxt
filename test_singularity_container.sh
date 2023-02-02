@@ -8,7 +8,7 @@ singularity run --cleanenv --contain \
     --home $(pwd -P) \
     --bind $(pwd -P)/INPUTS:/INPUTS \
     --bind $(pwd -P)/OUTPUTS:/OUTPUTS \
-    examcard2txt_v2.simg \
+    examcard2txt.simg \
     --examcard "${examcard}" \
     --outdir "${outdir}" \
     --project "${project}" \

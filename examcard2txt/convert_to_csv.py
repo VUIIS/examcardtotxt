@@ -64,7 +64,7 @@ def main(argv):
     examcard_csv = basename + '.csv'    
 
     # Load examcard parameters and save to dict
-    exampara_dir = "/opt/examcard2txt/examcard_parameters.csv"
+    exampara_dir = "/opt/pipeline/examcard2txt/examcard_parameters.csv"
     ep = pandas.read_csv(exampara_dir)
     para_dict = ep.to_dict()
 
@@ -89,6 +89,7 @@ def main(argv):
 
     # Scan txt file for scan names, extract parameters
     scan_dict={}
+    search_string=[]
     for scan in scan_list:
         scan_dict[scan] = []
         string_to_search = 'Protocol Name:  ' + scan
@@ -96,11 +97,17 @@ def main(argv):
         for para_options in para_dict.keys():
             for i in range(len(para_dict[para_options])):
                 para = para_dict[para_options][i]
-                tmp = search_string_in_file(examcard_txt,para,scan_start)
-                #print(tmp)
-                if tmp:
-                    scan_start = tmp[0][0] + 1
-                    scan_dict[scan].append(tmp[0][1])
+                tmp=search_string
+                search_string = search_string_in_file(examcard_txt,para,scan_start)
+                if search_string and tmp != search_string:
+                    scan_start = search_string[0][0]
+                    scan_dict[scan].append(search_string[0][1])
+                elif search_string and tmp == search_string:
+                    scan_start = search_string[0][0]+1
+                    search_string = search_string_in_file(examcard_txt,para,scan_start)
+                    scan_dict[scan].append(search_string[0][1])
+                else:
+                    continue
 
     # Add parameters to csv
     # One scan per row, first column is scan name
