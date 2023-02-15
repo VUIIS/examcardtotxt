@@ -11,7 +11,6 @@ EX_GEO_tra_slice_order
 Recon voxel size
 Recon voxel size
 Slice thickness
-Slice thickness
 RFOV
 Matrix scan
 reconstruction
@@ -40,19 +39,17 @@ technique
 Contrast enhancement
 Acquisition mode
 Echoes
-TE
-\(ms\)
+TE  
+   \(ms\)
 Flip angle
-TR
+TR  
+   \(ms\)
 Water-fat shift
 (pixels)
-Shim
+Shim  :
 mDIXON
 Fat suppresion
 Water suppression
-TFE prepulse
-delay
-\(ms\)
 Motion smoothing
 NSA
 Total scan duration
