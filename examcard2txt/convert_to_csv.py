@@ -88,63 +88,55 @@ def main(argv):
                 scan_list.append(name)
 
     # Scan txt file for scan names, extract parameters
-    scan_dict={}
+    scan_dict = {}
+    scan_dict['scan_name'] = scan_name
+    para_list = para_dict['Variable Names']
+
+    for i in range(len(para_list)):
+        scan_dict[para_list[i]] = []
+
     tmp=[]
     search_string=[]
+    split_string=[]
+    para_exam = para_dict['Selected Parameters']
     for scan in scan_list:
-        scan_dict[scan] = []
         string_to_search = 'Protocol Name:  ' + scan
         scan_start = search_string_in_file(examcard_txt,string_to_search,0)[0][0]
         scan_end = search_string_in_file(examcard_txt,'Protocol Name:  ',int(scan_start)+1)
         if not scan_end:
             scan_end = search_string_in_file(examcard_txt,'Converted by examcard2txt',0)
 
-        for para_options in para_dict.keys():
-            for i in range(len(para_dict[para_options])):
-                para = para_dict[para_options][i]
+        for i in range(len(para_exam)):
+            para = para_exam[i]
+            tmp=search_string
 
-                tmp=search_string
-
+            search_string = search_string_in_file(examcard_txt,para,scan_start)
+            if search_string and search_string[0][0] > scan_end[0][0]:
+                search_string = []
+            if search_string and tmp != search_string:
+                scan_start = search_string[0][0]
+                split_string = search_string[0][1].split(':')
+                split_string = split_string[-1].strip()[:99]
+                scan_dict[para_list[i]].append(split_string)
+            elif search_string and tmp[0][1] == search_string[0][1]:
+                scan_start = search_string[0][0]+1
                 search_string = search_string_in_file(examcard_txt,para,scan_start)
-                # verify that value is within scan range in examcard
-                if search_string and search_string[0][0] > scan_end[0][0]:
-                    search_string = []
-                # verify that we are pulling unique values
-                if search_string and tmp != search_string:
-                    scan_start = search_string[0][0]
-                    scan_dict[scan].append(search_string[0][1])
-                elif search_string and tmp == search_string:
-                    scan_start = search_string[0][0]+1
-                    search_string = search_string_in_file(examcard_txt,para,scan_start)
-                    scan_dict[scan].append(search_string[0][1])
-                elif not search_string:
-                    # Insert NOT FOUND if parameter is not in examcard
-                    scan_dict[scan].append(para + ': NOT FOUND')
+                if not search_string:
+                    scan_dict[para_list[i]].append('NOT FOUND')
+                else:    
+                    split_string = search_string[0][1].split(':')
+                    split_string = split_string[-1].strip()[:99]
+                    scan_dict[para_list[i]].append(split_string)
+            elif not search_string:
+                scan_dict[para_list[i]].append('NOT FOUND')
 
-    # Adjust dict for redcap sync module
-    # Append spaces to duplicate entries and remove entries > 100 characters in length
-    uniq = {}
 
-    for key in scan_dict.keys():
-        seen = set()
-        tmp = []
-        uniq[key] = []
-        for val in scan_dict[key]:
-            if val not in seen and len(val) < 100:            
-                seen.add(val)
-                uniq[key].append(val)
-            elif len(val) < 100:
-                uniq[key].append(val + ' ')
-                seen.add(val + ' ')
-            else:
-                uniq[key].append(val[:99])
-                seen.add(val[:99])
-
-        # Add parameters to csv
-        # One scan per row, first column is scan name
-        with open(examcard_csv, "w") as csv_file:
-            for key in uniq.keys():
-                csv_file.write("%s,%s\n"%(key,uniq[key]))
+    # Add parameters to csv
+    # One scan per row, first column is scan name
+    pd_ec = pandas.DataFrame.from_dict(scan_dict)
+    basename, _ = os.path.splitext(examcard_txt)
+    examcard_csv = basename + '.csv' 
+    pd_ec.to_csv(examcard_csv, sep = ';', encoding = 'cp1251', index = False)
 
 
 if __name__ == '__main__':

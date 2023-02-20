@@ -1,63 +1,61 @@
-Selected Parameters
-FOV
-FOV
-FOV
-ACQ voxel size
-ACQ voxel size
-Slice thickness
-EX_GEO_sag_slice_order
-EX_GEO_cor_slice_order
-EX_GEO_tra_slice_order
-Recon voxel size
-Recon voxel size
-Slice thickness
-RFOV
-Matrix scan
-reconstruction
-Scan percentage
-SENSE
-CS-SENSE
-Stacks
-Slices
-Slice thickness
-Slice orientation
-Fold-over direction
-Fat shift direction
-Slice Offc. AP
-RL
-FH
-Ang.  AP
-RL
-FH
-Slice scan order
-REST slabs
-Patient position
-Patient orientation
-Scan type
-Scan mode 
-technique
-Contrast enhancement
-Acquisition mode
-Echoes
-TE  
-   \(ms\)
-Flip angle
-TR  
-   \(ms\)
-Water-fat shift
-(pixels)
-Shim  :
-mDIXON
-Fat suppresion
-Water suppression
-Motion smoothing
-NSA
-Total scan duration
-IF_absolute_SNR
-Rel. SNR 
-Act. TR/TE
-ACQ matrix M x P
-ACQ voxel MPS
-REC voxel MPS
-Min. TI delay
-Min. TR/TE
+Selected Parameters,Variable Names
+FOV,FOV_1
+FOV,FOV_2
+FOV,FOV_3
+ACQ voxel size,ACQ_voxel_size_1
+ACQ voxel size,ACQ_voxel_size_2
+Slice thickness,Slice_thickness1
+EX_GEO_sag_slice_order,EX_GEO_sag_slice_order
+EX_GEO_cor_slice_order,EX_GEO_cor_slice_order
+EX_GEO_tra_slice_order,EX_GEO_tra_slice_order
+Recon voxel size,Recon_voxel_size_1
+Recon voxel size,Recon_voxel_size_2
+RFOV,RFOV
+Matrix scan,Matrix_scan
+reconstruction,reconstruction
+Scan percentage,Scan_percentage
+SENSE,SENSE
+CS-SENSE,CS-SENSE
+Stacks,Stacks
+Slices,Slices
+Slice orientation,Slice_orientation
+Fold-over direction,Fold-over_direction
+Fat shift direction,Fat_shift_direction
+Slice Offc. AP,Slice_Offc._AP
+RL \(L,RL_L_mm
+FH \(H,FH_L_mm
+Ang.  AP,Ang._AP
+RL \(d,RL_deg
+FH \(d,FH_deg
+Slice scan order,Slice_scan_order
+REST slabs,REST_slabs
+Patient position,Patient_position
+Patient orientation,Patient_orientation
+Scan type,Scan_type
+Scan mode ,Scan_mode
+technique,technique
+Contrast enhancement,Contrast_enhancement
+Acquisition mode,Acquisition_mode
+Echoes,Echoes
+TE  ,TE
+   \(ms\),TE_ms
+Flip angle,Flip_angle
+TR  ,TR
+   \(ms\),TR_ms
+Water-fat shift,Water-fat_shift
+(pixels),pixels
+Shim  :,shim
+mDIXON,mDixon
+Fat suppresion,Fat_suppression
+Water suppression,Water_suppression
+Motion smoothing,Motion_smoothing
+NSA,NSA
+Total scan duration,Total_scan_duration
+IF_absolute_SNR,IF_absolute_SNR
+Rel. SNR ,Rel_SNR
+Act. TR/TE,Act_TR/TE
+ACQ matrix M x P,ACQ_matrix_MxP
+ACQ voxel MPS,ACQ_voxel_MPS
+REC voxel MPS,REC_voxel_MPS
+Min. TI delay,Min_T1_delay
+Min. TR/TE,Min_TR/TE
