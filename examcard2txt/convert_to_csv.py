@@ -89,7 +89,7 @@ def main(argv):
 
     # Scan txt file for scan names, extract parameters
     scan_dict = {}
-    scan_dict['scan_name'] = scan_name
+    scan_dict['scan_name'] = scan_list
     para_list = para_dict['Variable Names']
 
     for i in range(len(para_list)):
