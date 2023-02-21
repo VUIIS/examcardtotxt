@@ -136,7 +136,7 @@ def main(argv):
     pd_ec = pandas.DataFrame.from_dict(scan_dict)
     basename, _ = os.path.splitext(examcard_txt)
     examcard_csv = basename + '.csv' 
-    pd_ec.to_csv(examcard_csv, sep = ';', encoding = 'cp1251', index = False)
+    pd_ec.to_csv(examcard_csv, sep = ',', encoding = 'cp1251', index = False)
 
 
 if __name__ == '__main__':
