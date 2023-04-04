@@ -21,10 +21,10 @@ Slices,Slices
 Slice orientation,Slice_orientation
 Fold-over direction,Fold-over_direction
 Fat shift direction,Fat_shift_direction
-Slice Offc. AP,Slice_Offc._AP
+Slice Offc. AP,Slice_Offc_AP
 RL \(L,RL_L_mm
 FH \(H,FH_L_mm
-Ang.  AP,Ang._AP
+Ang.  AP,Ang_AP
 RL \(d,RL_deg
 FH \(d,FH_deg
 Slice scan order,Slice_scan_order

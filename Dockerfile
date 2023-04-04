@@ -63,7 +63,8 @@ RUN cpanm XML::Parser; rm -fr root/.cpanm
 RUN   python3 -m pip --no-cache-dir install setuptools --upgrade && \
   python3 -m pip --no-cache-dir install lxml && \
   python3 -m pip --no-cache-dir install weasyprint && \
-  python3 -m pip --no-cache-dir install pandas
+  python3 -m pip --no-cache-dir install pandas && \
+  python3 -m pip --no-cache-dir install numpy
 
  # Run main script
  ENTRYPOINT ["/opt/pipeline/examcard2txt/run_examcard_conversion.sh"]
