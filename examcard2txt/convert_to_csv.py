@@ -135,7 +135,7 @@ def main(argv):
     # One scan per row, first column is scan name
     pd_ec = pandas.DataFrame.from_dict(scan_dict)
     basename, _ = os.path.splitext(examcard_txt)
-    examcard_csv = basename + '.csv' 
+    examcard_csv = 'EXAMCARD.csv' 
     pd_ec.to_csv(examcard_csv, sep = ',', encoding = 'cp1251', index = False)
 
 
